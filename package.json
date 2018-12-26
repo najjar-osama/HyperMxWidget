@@ -22,5 +22,15 @@
   "bugs": {
     "url": "https://github.com/najjar-osama/HyperMxWidget/issues"
   },
-  "homepage": "https://github.com/najjar-osama/HyperMxWidget#readme"
+  "homepage": "https://github.com/najjar-osama/HyperMxWidget#readme",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.0.4",
+    "concurrently": "^4.1.0",
+    "cross-env": "^5.2.0",
+    "webpack": "^4.28.2",
+    "webpack-cli": "^3.1.2"
+  }
 }
