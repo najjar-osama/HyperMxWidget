@@ -5,6 +5,7 @@ module.exports = {
 	srcEntry: path.join(__dirname, '..', 'src', 'index.js'),
 	distDir: path.join(__dirname, '..', 'dist'),
 	buildDir: path.join(__dirname, '..', 'build'),
+	mxTestProjectDir: path.join(__dirname, '..', 'test'),
 	widgetPackageXML: path.join(__dirname, '..', 'src', 'package.ejs'),
 	widgetConfigXML: path.join(__dirname, '..', 'src', 'widget.config.ejs')
 };

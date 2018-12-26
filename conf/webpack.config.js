@@ -1,6 +1,7 @@
 const paths = require('./paths');
 const widgetConf = require('./widget.config.json');
 const XMLPlugin = require('xml-webpack-plugin');
+const ArchivePlugin = require('webpack-archive-plugin');
 
 const MODES = {
 	DEV: 'development',
@@ -12,7 +13,7 @@ const isDev = process.env.MODE === MODES.DEV;
 const widgetXMLFiles = [
 	{
 		template: paths.widgetPackageXML,
-		filename: 'package.xml',
+		filename: `package.xml`,
 		data: {
 			NAME: widgetConf.name
 		}
@@ -30,22 +31,35 @@ const widgetXMLFiles = [
 
 module.exports = {
 	mode: isDev ? MODES.DEV : MODES.PROD,
+	target: 'web',
 	watch: isDev,
 	entry: paths.srcEntry,
 	output: {
 		path: isDev ? paths.buildDir : paths.distDir,
-		filename: isDev ? `${widgetConf.name}/${widgetConf.name}.js` : `${widgetConf.name}/${widgetConf.name}.min.js`,
+		filename: `${widgetConf.name}/${widgetConf.name}.js`,
 		libraryTarget: 'amd'
 	},
 	module: {
 		rules: [ { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' } ]
 	},
-	externals: {
-		MxWidgetBase: 'mxui/widget/_WidgetBase'
-	},
+	externals: [
+		{ MxWidgetBase: 'mxui/widget/_WidgetBase' },
+		{ dojoBaseDeclare: 'dojo/_base/declare' },
+		/mx|mxui|mendix|dijit|dojo/
+	],
 	plugins: [
 		new XMLPlugin({
 			files: widgetXMLFiles
+		}),
+		new ArchivePlugin({
+			output: `${paths.distDir}/${widgetConf.name}`,
+			format: 'zip',
+			ext: 'mpk'
+		}),
+		new ArchivePlugin({
+			output: `${paths.mxTestProjectDir}/widgets/${widgetConf.name}`,
+			format: 'zip',
+			ext: 'mpk'
 		})
 	]
 };
