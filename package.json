@@ -1,0 +1,26 @@
+{
+  "name": "hypermxwidget",
+  "version": "1.0.0",
+  "description": "Mendix widget built using HyperApp & Dojo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/najjar-osama/HyperMxWidget.git"
+  },
+  "keywords": [
+    "Mendix",
+    "widget",
+    "HyperApp",
+    "Dojo",
+    "Javascript"
+  ],
+  "author": "Osama Mohammad Najjar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/najjar-osama/HyperMxWidget/issues"
+  },
+  "homepage": "https://github.com/najjar-osama/HyperMxWidget#readme"
+}
