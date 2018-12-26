@@ -40,7 +40,19 @@ module.exports = {
 		libraryTarget: 'amd'
 	},
 	module: {
-		rules: [ { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' } ]
+		rules: [
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: [ '@babel/preset-env' ],
+						plugins: [ 'add-module-exports', [ '@babel/plugin-transform-react-jsx', { pragma: 'h' } ] ]
+					}
+				}
+			}
+		]
 	},
 	externals: [
 		{ MxWidgetBase: 'mxui/widget/_WidgetBase' },
