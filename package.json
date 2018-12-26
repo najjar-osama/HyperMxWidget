@@ -32,6 +32,7 @@
 		"concurrently": "^4.1.0",
 		"cross-env": "^5.2.0",
 		"webpack": "^4.28.2",
+		"webpack-archive-plugin": "^3.0.0",
 		"webpack-cli": "^3.1.2",
 		"xml-webpack-plugin": "0.0.2"
 	}
