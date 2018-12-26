@@ -35,5 +35,8 @@
 		"webpack-archive-plugin": "^3.0.0",
 		"webpack-cli": "^3.1.2",
 		"xml-webpack-plugin": "0.0.2"
+	},
+	"dependencies": {
+		"hyperapp": "^1.2.9"
 	}
 }
