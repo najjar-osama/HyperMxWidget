@@ -1,36 +1,38 @@
 {
-  "name": "hypermxwidget",
-  "version": "1.0.0",
-  "description": "Mendix widget built using HyperApp & Dojo",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/najjar-osama/HyperMxWidget.git"
-  },
-  "keywords": [
-    "Mendix",
-    "widget",
-    "HyperApp",
-    "Dojo",
-    "Javascript"
-  ],
-  "author": "Osama Mohammad Najjar",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/najjar-osama/HyperMxWidget/issues"
-  },
-  "homepage": "https://github.com/najjar-osama/HyperMxWidget#readme",
-  "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.2.3",
-    "babel": "^6.23.0",
-    "babel-loader": "^8.0.4",
-    "concurrently": "^4.1.0",
-    "cross-env": "^5.2.0",
-    "webpack": "^4.28.2",
-    "webpack-cli": "^3.1.2"
-  }
+	"name": "hypermxwidget",
+	"version": "1.0.0",
+	"description": "Mendix widget built using HyperApp & Dojo",
+	"main": "index.js",
+	"scripts": {
+		"dev": "cross-env MODE=development webpack --config conf/webpack.config.js",
+		"build": "cross-env MODE=production webpack --config conf/webpack.config.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/najjar-osama/HyperMxWidget.git"
+	},
+	"keywords": [
+		"Mendix",
+		"widget",
+		"HyperApp",
+		"Dojo",
+		"Javascript"
+	],
+	"author": "Osama Mohammad Najjar",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/najjar-osama/HyperMxWidget/issues"
+	},
+	"homepage": "https://github.com/najjar-osama/HyperMxWidget#readme",
+	"devDependencies": {
+		"@babel/core": "^7.2.2",
+		"@babel/preset-env": "^7.2.3",
+		"babel": "^6.23.0",
+		"babel-loader": "^8.0.4",
+		"concurrently": "^4.1.0",
+		"cross-env": "^5.2.0",
+		"webpack": "^4.28.2",
+		"webpack-cli": "^3.1.2",
+		"xml-webpack-plugin": "0.0.2"
+	}
 }
