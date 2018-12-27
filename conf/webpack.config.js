@@ -2,6 +2,7 @@ const paths = require('./paths');
 const widgetConf = require('./widget.config.json');
 const XMLPlugin = require('xml-webpack-plugin');
 const ArchivePlugin = require('webpack-archive-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const MODES = {
 	DEV: 'development',
@@ -51,6 +52,15 @@ module.exports = {
 						plugins: [ 'add-module-exports', [ '@babel/plugin-transform-react-jsx', { pragma: 'h' } ] ]
 					}
 				}
+			},
+			{
+				test: /\.(sa|sc|c)ss$/,
+				use: [
+					MiniCssExtractPlugin.loader,
+					'css-loader',
+					{ loader: 'postcss-loader', options: { config: { path: paths.confDir } } },
+					'sass-loader'
+				]
 			}
 		]
 	},
@@ -60,6 +70,9 @@ module.exports = {
 		/mx|mxui|mendix|dijit|dojo/
 	],
 	plugins: [
+		new MiniCssExtractPlugin({
+			filename: `${widgetConf.name}/${widgetConf.name}.css`
+		}),
 		new XMLPlugin({
 			files: widgetXMLFiles
 		}),
