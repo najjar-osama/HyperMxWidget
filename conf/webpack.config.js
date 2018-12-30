@@ -11,6 +11,9 @@ const MODES = {
 const isProd = process.env.MODE === MODES.PROD;
 const isDev = process.env.MODE === MODES.DEV;
 
+const widgetDir = `${widgetConf.name}/widget`;
+const widgetUIDir = `${widgetDir}/ui`;
+
 const widgetXMLFiles = [
 	{
 		template: paths.widgetPackageXML,
@@ -33,11 +36,13 @@ const widgetXMLFiles = [
 module.exports = {
 	mode: isDev ? MODES.DEV : MODES.PROD,
 	target: 'web',
+	devtool: isDev ? 'eval-source-map' : false,
 	watch: isDev,
 	entry: paths.srcEntry,
 	output: {
 		path: isDev ? paths.buildDir : paths.distDir,
-		filename: `${widgetConf.name}/${widgetConf.name}.js`,
+		filename: `${widgetDir}/${widgetConf.name}.js`,
+		//sourceMapFilename: '[file]',
 		libraryTarget: 'amd'
 	},
 	module: {
@@ -61,17 +66,29 @@ module.exports = {
 					{ loader: 'postcss-loader', options: { config: { path: paths.confDir } } },
 					'sass-loader'
 				]
+			},
+			{
+				test: /\.(gif|png|jpe?g|svg)$/i,
+				use: [
+					{
+						loader: 'file-loader',
+						options: {
+							name: `[name].[ext]`,
+							outputPath: `${widgetUIDir}/images`
+						}
+					}
+				]
 			}
 		]
 	},
 	externals: [
 		{ MxWidgetBase: 'mxui/widget/_WidgetBase' },
 		{ dojoBaseDeclare: 'dojo/_base/declare' },
-		/mx|mxui|mendix|dijit|dojo/
+		/mx|mxui|mendix|dijit|dojo|require/
 	],
 	plugins: [
 		new MiniCssExtractPlugin({
-			filename: `${widgetConf.name}/${widgetConf.name}.css`
+			filename: `${widgetUIDir}/${widgetConf.name}.css`
 		}),
 		new XMLPlugin({
 			files: widgetXMLFiles
