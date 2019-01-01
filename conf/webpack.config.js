@@ -3,6 +3,7 @@ const widgetConf = require('./widget.config.json');
 const XMLPlugin = require('xml-webpack-plugin');
 const ArchivePlugin = require('webpack-archive-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const MODES = {
 	DEV: 'development',
@@ -42,8 +43,14 @@ module.exports = {
 	output: {
 		path: isDev ? paths.buildDir : paths.distDir,
 		filename: `${widgetDir}/${widgetConf.name}.js`,
-		//sourceMapFilename: '[file]',
 		libraryTarget: 'amd'
+	},
+	optimization: {
+		minimizer: [
+			new UglifyJsPlugin({
+				test: /\.js(\?.*)?$/i
+			})
+		]
 	},
 	module: {
 		rules: [
